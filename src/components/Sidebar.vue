@@ -1,8 +1,8 @@
 <template>
   <div class="sidebar">
-    <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
-             text-color="#bfcbd9" active-text-color="#20a0ff" unique-opened router>
-      <template v-for="item in items">
+    <el-menu class="sidebar-el-menu" :collapse="collapse" background-color="#324157" text-color="#bfcbd9"
+             active-text-color="#20a0ff" unique-opened router>
+      <template v-for="item in menuList">
         <template v-if="item.subs">
           <el-submenu :index="item.index" :key="item.index">
             <template #title>
@@ -34,20 +34,40 @@
 
 <script>
 import {defineComponent} from "vue";
-import {computed, watch} from "vue";
 import store from "../store";
-import route from "../router";
+
+const menuList = [
+  {
+    icon: "el-icon-lx-home",
+    index: "/dashboard",
+    title: "系统首页",
+  },
+  {
+    icon: "el-icon-lx-warn",
+    index: "7",
+    title: "错误处理",
+    subs: [
+      {
+        index: "/permission",
+        title: "权限测试",
+      },
+      {
+        index: "/404",
+        title: "404页面",
+      },
+    ],
+  }
+];
 
 export default defineComponent({
   name: "Sidebar",
   data() {
     return {
       collapse: store.state.collapse,
-      items: route.getRoutes()
+      menuList: menuList
     }
   },
-  methods:{
-  }
+  methods: {}
 })
 </script>
 

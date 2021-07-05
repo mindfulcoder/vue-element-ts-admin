@@ -1,18 +1,21 @@
 import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 import Home from "../views/Home.vue";
 
-const routes:RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
     {
         path: "/login",
         name: "Login",
         meta: {
             title: '登录'
         },
-        component: () => import ( /* webpackChunkName: "login" */ "../views/Login.vue")
+        component: () => import ("../views/Login.vue")
     },
     {
         path: '/',
-        redirect: '/dashboard'
+        redirect: '/dashboard',
+        meta: {
+            index: 0
+        }
     },
     {
         path: "/",
@@ -23,25 +26,31 @@ const routes:RouteRecordRaw[] = [
                 path: "/dashboard",
                 name: "dashboard",
                 meta: {
-                    title: '系统首页'
+                    index: 1,
+                    title: '系统首页',
+                    icon: 'el-icon-lx-home'
                 },
-                component: () => import ( /* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
+                component: () => import ( "../views/Dashboard.vue")
             },
             {
                 path: '/404',
                 name: '404',
                 meta: {
-                    title: '找不到页面'
+                    index: 2,
+                    title: '找不到页面',
+                    icon: 'el-icon-lx-warn'
                 },
-                component: () => import (/* webpackChunkName: "404" */ '../views/404.vue')
+                component: () => import ('../views/404.vue')
             },
             {
                 path: '/403',
                 name: '403',
                 meta: {
-                    title: '没有权限'
+                    index: 3,
+                    title: '没有权限',
+                    icon: 'el-icon-lx-warn'
                 },
-                component: () => import (/* webpackChunkName: "403" */ '../views/403.vue')
+                component: () => import ('../views/403.vue')
             }
         ]
     }
