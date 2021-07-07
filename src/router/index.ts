@@ -6,7 +6,8 @@ export const routes: RouteRecordRaw[] = [
         path: "/login",
         name: "Login",
         meta: {
-            title: '登录'
+            title: '登录',
+            visible: false,
         },
         component: () => import ("../views/Login.vue")
     },
@@ -14,6 +15,7 @@ export const routes: RouteRecordRaw[] = [
         path: '/',
         redirect: '/dashboard',
         meta: {
+            title:'首页',
             index: 0
         }
     },
