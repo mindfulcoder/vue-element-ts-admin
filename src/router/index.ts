@@ -29,7 +29,7 @@ export const static_routes: RouteRecordRaw[] = [
             },
             {
                 path: "/table",
-                name: "basetable",
+                name: "table",
                 meta: {
                     title: '表格',
                     icon: 'el-icon-s-grid'
@@ -38,7 +38,7 @@ export const static_routes: RouteRecordRaw[] = [
             },
             {
                 path: "/charts",
-                name: "basecharts",
+                name: "charts",
                 meta: {
                     title: '图表',
                     icon: 'el-icon-s-data'
@@ -47,7 +47,7 @@ export const static_routes: RouteRecordRaw[] = [
             },
             {
                 path: "/form",
-                name: "baseform",
+                name: "form",
                 meta: {
                     title: '表单',
                     icon: 'el-icon-goods'
@@ -63,16 +63,6 @@ export const static_routes: RouteRecordRaw[] = [
 
                 },
                 component: () => import ("../views/Tabs.vue")
-            },
-            {
-                path: "/donate",
-                name: "donate",
-                meta: {
-                    title: '鼓励作者',
-                    icon: 'el-icon-goods'
-
-                },
-                component: () => import ("../views/Donate.vue")
             },
             {
                 path: "/permission",
@@ -134,16 +124,6 @@ export const static_routes: RouteRecordRaw[] = [
                 component: () => import ('../views/403.vue')
             },
             {
-                path: '/user',
-                name: 'user',
-                meta: {
-                    title: '个人中心',
-                    icon: 'el-icon-goods'
-
-                },
-                component: () => import ('../views/User.vue')
-            },
-            {
                 path: '/editor',
                 name: 'editor',
                 meta: {
@@ -172,7 +152,6 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    document.title = `${to.meta.title} | vue-manage-system`;
     const user = getCurrentUser()
     if (!user && to.path !== '/login') {
         next('/login');

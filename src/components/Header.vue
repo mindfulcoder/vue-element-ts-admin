@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <div class="collapse-btn" @click="collapseChage">
+        <div class="collapse-btn" @click="collapseChange">
             <i v-if="!collapse" class="el-icon-s-fold"></i>
             <i v-else class="el-icon-s-unfold"></i>
         </div>
@@ -25,8 +25,7 @@
                             <a href="https://github.com/mindfulcoder/vue-element-ts-admin.git" target="_blank">
                                 <el-dropdown-item>Github</el-dropdown-item>
                             </a>
-                            <el-dropdown-item command="user">个人中心</el-dropdown-item>
-                            <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
+                            <el-dropdown-item divided command="logout">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
@@ -58,11 +57,9 @@ export default {
 
         const router = useRouter();
         const handleCommand = (command) => {
-            if (command == "loginout") {
+            if (command == "logout") {
                 clearUserinfo();
                 router.push("/login");
-            } else if (command == "user") {
-                router.push("/user");
             }
         };
 
@@ -70,7 +67,7 @@ export default {
             userinfo,
             message,
             collapse,
-            collapseChage: collapseChange,
+            collapseChange: collapseChange,
             handleCommand,
         };
     },
