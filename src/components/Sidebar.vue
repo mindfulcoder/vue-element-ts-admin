@@ -1,12 +1,12 @@
 <template>
   <div class="sidebar">
-    <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
+    <el-menu class="sidebar-el-menu" :default-active="route.path" :collapse="store.state.collapse" background-color="#324157"
              text-color="#bfcbd9" active-text-color="#20a0ff" unique-opened router>
       <template v-for="menu in menuList">
         <template v-if="menu.children">
           <el-submenu :index="menu.index" :key="menu.index">
             <template #title>
-              <i class="el-icon-edit"></i>
+              <i :class="menu.icon"></i>
               <span>{{ menu.title }}</span>
             </template>
             <Submenu v-for="child in menu.children" :menu="child"/>
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import {computed} from "vue";
 import {useStore} from "vuex";
 import {useRoute} from "vue-router";
 import Submenu from "./Submenu.vue";
@@ -109,20 +108,12 @@ export default {
         title: "支持作者",
       },
     ];
-
     const route = useRoute();
-
-    const onRoutes = computed(() => {
-      return route.path;
-    });
-
     const store = useStore();
-    const collapse = computed(() => store.state.collapse);
-
     return {
       menuList: menuList,
-      onRoutes,
-      collapse,
+      route,
+      store,
     };
   },
 };

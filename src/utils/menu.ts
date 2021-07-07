@@ -3,7 +3,7 @@ import {RouteRecordRaw} from "vue-router";
 export interface Menu {
     title: string,
     index: string,
-    icon: string,
+    icon?: string,
     children?: Menu[]
 }
 
