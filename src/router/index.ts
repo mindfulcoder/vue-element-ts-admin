@@ -1,129 +1,173 @@
 import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 import Home from "../views/Home.vue";
 
-const routes:RouteRecordRaw[] = [
+export const static_routes: RouteRecordRaw[] = [
     {
         path: '/',
-        redirect: '/dashboard'
-    }, {
+        redirect: '/dashboard',
+        meta: {
+            hidden: true,
+        }
+    },
+    {
         path: "/",
         name: "Home",
         component: Home,
+        meta:{
+            hidden: true
+        },
         children: [
             {
                 path: "/dashboard",
                 name: "dashboard",
                 meta: {
-                    title: '系统首页'
+                    title: '系统首页',
+                    icon:'el-icon-s-home',
                 },
-                component: () => import ( /* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
-            }, {
+                component: () => import ("../views/Dashboard.vue")
+            },
+            {
                 path: "/table",
                 name: "basetable",
                 meta: {
-                    title: '表格'
+                    title: '表格',
+                    icon:'el-icon-s-grid'
                 },
-                component: () => import ( /* webpackChunkName: "table" */ "../views/BaseTable.vue")
-            }, {
+                component: () => import ("../views/BaseTable.vue")
+            },
+            {
                 path: "/charts",
                 name: "basecharts",
                 meta: {
-                    title: '图表'
+                    title: '图表',
+                    icon:'el-icon-s-data'
                 },
-                component: () => import ( /* webpackChunkName: "charts" */ "../views/BaseCharts.vue")
-            }, {
+                component: () => import ("../views/BaseCharts.vue")
+            },
+            {
                 path: "/form",
                 name: "baseform",
                 meta: {
-                    title: '表单'
+                    title: '表单',
+                    icon:'el-icon-goods'
                 },
-                component: () => import ( /* webpackChunkName: "form" */ "../views/BaseForm.vue")
-            }, {
+                component: () => import ("../views/BaseForm.vue")
+            },
+            {
                 path: "/tabs",
                 name: "tabs",
                 meta: {
-                    title: 'tab标签'
+                    title: 'tab标签',
+                    icon:'el-icon-goods'
+
                 },
-                component: () => import ( /* webpackChunkName: "tabs" */ "../views/Tabs.vue")
-            }, {
+                component: () => import ("../views/Tabs.vue")
+            },
+            {
                 path: "/donate",
                 name: "donate",
                 meta: {
-                    title: '鼓励作者'
+                    title: '鼓励作者',
+                    icon:'el-icon-goods'
+
                 },
-                component: () => import ( /* webpackChunkName: "donate" */ "../views/Donate.vue")
-            }, {
+                component: () => import ("../views/Donate.vue")
+            },
+            {
                 path: "/permission",
                 name: "permission",
                 meta: {
                     title: '权限管理',
-                    permission: true
+                    access: ['admin'],
+                    icon:'el-icon-goods'
+
                 },
-                component: () => import ( /* webpackChunkName: "permission" */ "../views/Permission.vue")
-            }, {
+                component: () => import ("../views/Permission.vue")
+            },
+            {
                 path: "/i18n",
                 name: "i18n",
                 meta: {
-                    title: '国际化语言'
+                    title: '国际化语言',
+                    icon:'el-icon-goods'
                 },
-                component: () => import ( /* webpackChunkName: "i18n" */ "../views/I18n.vue")
-            }, {
+                component: () => import ("../views/I18n.vue")
+            },
+            {
                 path: "/upload",
                 name: "upload",
                 meta: {
-                    title: '上传插件'
+                    title: '上传插件',
+                    icon:'el-icon-goods'
+
                 },
-                component: () => import ( /* webpackChunkName: "upload" */ "../views/Upload.vue")
-            }, {
+                component: () => import ( "../views/Upload.vue")
+            },
+            {
                 path: "/icon",
                 name: "icon",
                 meta: {
-                    title: '自定义图标'
+                    title: '自定义图标',
+                    icon:'el-icon-goods'
+
                 },
-                component: () => import ( /* webpackChunkName: "icon" */ "../views/Icon.vue")
-            }, {
+                component: () => import ("../views/Icon.vue")
+            },
+            {
                 path: '/404',
                 name: '404',
                 meta: {
-                    title: '找不到页面'
+                    title: '找不到页面',
+                    icon:'el-icon-goods'
+
                 },
-                component: () => import (/* webpackChunkName: "404" */ '../views/404.vue')
-            }, {
+                component: () => import ('../views/404.vue')
+            },
+            {
                 path: '/403',
                 name: '403',
                 meta: {
-                    title: '没有权限'
+                    title: '没有权限',
+                    icon:'el-icon-goods'
                 },
-                component: () => import (/* webpackChunkName: "403" */ '../views/403.vue')
-            }, {
+                component: () => import ('../views/403.vue')
+            },
+            {
                 path: '/user',
                 name: 'user',
                 meta: {
-                    title: '个人中心'
+                    title: '个人中心',
+                    icon:'el-icon-goods'
+
                 },
-                component: () => import (/* webpackChunkName: "user" */ '../views/User.vue')
-            }, {
+                component: () => import ('../views/User.vue')
+            },
+            {
                 path: '/editor',
                 name: 'editor',
                 meta: {
-                    title: '富文本编辑器'
+                    title: '富文本编辑器',
+                    icon:'el-icon-goods'
+
                 },
-                component: () => import (/* webpackChunkName: "editor" */ '../views/Editor.vue')
+                component: () => import ('../views/Editor.vue')
             }
         ]
-    }, {
+    },
+    {
         path: "/login",
         name: "Login",
         meta: {
-            title: '登录'
+            title: '登录',
+            hidden: true
         },
-        component: () => import ( /* webpackChunkName: "login" */ "../views/Login.vue")
+        component: () => import ( "../views/Login.vue")
     }
 ];
 
 const router = createRouter({
     history: createWebHashHistory(),
-    routes
+    routes: static_routes
 });
 
 router.beforeEach((to, from, next) => {
@@ -132,10 +176,7 @@ router.beforeEach((to, from, next) => {
     if (!role && to.path !== '/login') {
         next('/login');
     } else if (to.meta.permission) {
-        // 如果是管理员权限则可进入，这里只是简单的模拟管理员权限而已
-        role === 'admin'
-            ? next()
-            : next('/403');
+        role === 'admin' ? next() : next('/403');
     } else {
         next();
     }

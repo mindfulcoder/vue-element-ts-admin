@@ -20,7 +20,7 @@ function getIndex(route: RouteRecordRaw) {
 }
 
 function getIcon(route: RouteRecordRaw) {
-    let icon = ''
+    let icon = 'el-icon-menu'
     if (route.meta && route.meta.icon != '') {
         icon = route.meta.icon as string
     }
@@ -30,8 +30,10 @@ function getIcon(route: RouteRecordRaw) {
 export function getMenuList(routes: RouteRecordRaw[], roles: string[]): Menu[] {
     let menuList: Menu[] = [];
     for (let route of routes) {
-        let visible = isVisible(route);
-        if (!visible) {
+        if (isHidden(route)) {
+            if (hasChildren(route)) {
+                menuList=menuList.concat(getMenuList(route.children, roles))
+            }
             continue;
         }
         if (!isAccessible(route, roles)) {
@@ -54,11 +56,11 @@ function hasChildren(route: RouteRecordRaw): boolean {
     return route.children && route.children.length > 0
 }
 
-function isVisible(route: RouteRecordRaw): boolean {
+function isHidden(route: RouteRecordRaw): boolean {
     if (route.meta) {
-        return route.meta.visible as boolean
+        return route.meta.hidden as boolean
     } else {
-        return true
+        return false
     }
 }
 
