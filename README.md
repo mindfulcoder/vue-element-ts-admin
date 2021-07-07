@@ -5,9 +5,9 @@ This is a simple Vue 3 and Element Plus template for admin app.
 ## Backend Developer Friendly
 
 I have more than 10 years experience with backend, but not a frontend beginner util recently.
-I am trying my best to make this template simple and easy for beginners, especially those have backend experience like me.
+I am trying my best to make this template simple and easy for beginners, especially for those have backend experience like me.
 
-## Follow the office tutorial
+## Follow the official tutorial
 1. I follow the official [Vue 3 tutorial](https://v3.vuejs.org/guide/introduction.html).
 2. I use the UI library on [Element Plus](https://element-plus.org/#/en-US).
 3. I use the [TypeScript for Java programmer](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-oop.html)  
