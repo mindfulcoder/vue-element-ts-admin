@@ -1,14 +1,12 @@
 <template>
     <div class="header">
-        <!-- 折叠按钮 -->
         <div class="collapse-btn" @click="collapseChage">
             <i v-if="!collapse" class="el-icon-s-fold"></i>
             <i v-else class="el-icon-s-unfold"></i>
         </div>
-        <div class="logo">后台管理系统</div>
+        <div class="logo">ElementPlus TS Admin</div>
         <div class="header-right">
             <div class="header-user-con">
-                <!-- 消息中心 -->
                 <div class="btn-bell">
                     <el-tooltip effect="dark" :content="message?`有${message}条未读消息`:`消息中心`" placement="bottom">
                         <router-link to="/tabs">
@@ -17,20 +15,15 @@
                     </el-tooltip>
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div>
-                <!-- 用户头像 -->
-                <div class="user-avator">
-                    <img src="../assets/img/img.jpg" />
+                <div class="user-avatar">
+                  <el-avatar shape="circle" fit="fill" icon="el-icon-user-solid" :src="userinfo.avatar"></el-avatar>
                 </div>
-                <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
-                        {{username}}
-                        <i class="el-icon-caret-bottom"></i>
-                    </span>
+                    <span class="el-dropdown-link">{{userinfo.displayName}}<i class="el-icon-caret-bottom"></i></span>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <a href="https://github.com/lin-xin/vue-manage-system" target="_blank">
-                                <el-dropdown-item>项目仓库</el-dropdown-item>
+                            <a href="https://github.com/mindfulcoder/vue-element-ts-admin.git" target="_blank">
+                                <el-dropdown-item>Github</el-dropdown-item>
                             </a>
                             <el-dropdown-item command="user">个人中心</el-dropdown-item>
                             <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
@@ -45,9 +38,11 @@
 import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import {getCurrentUser,clearUserinfo} from "../utils/user";
+
 export default {
     setup() {
-        const username = localStorage.getItem("ms_username");
+        const userinfo =getCurrentUser();
         const message = 2;
         const store = useStore();
         const collapse = computed(() => store.state.collapse);
@@ -64,7 +59,7 @@ export default {
         const router = useRouter();
         const handleCommand = (command) => {
             if (command == "loginout") {
-                localStorage.removeItem("ms_username");
+                clearUserinfo();
                 router.push("/login");
             } else if (command == "user") {
                 router.push("/user");
@@ -72,7 +67,7 @@ export default {
         };
 
         return {
-            username,
+            userinfo,
             message,
             collapse,
             collapseChage: collapseChange,
@@ -110,20 +105,7 @@ export default {
     height: 70px;
     align-items: center;
 }
-.btn-fullscreen {
-    transform: rotate(45deg);
-    margin-right: 5px;
-    font-size: 24px;
-}
 .btn-bell,
-.btn-fullscreen {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    border-radius: 15px;
-    cursor: pointer;
-}
 .btn-bell-badge {
     position: absolute;
     right: 0;
@@ -140,10 +122,10 @@ export default {
 .user-name {
     margin-left: 10px;
 }
-.user-avator {
+.user-avatar {
     margin-left: 20px;
 }
-.user-avator img {
+.user-avatar img {
     display: block;
     width: 40px;
     height: 40px;
@@ -152,8 +134,5 @@ export default {
 .el-dropdown-link {
     color: #fff;
     cursor: pointer;
-}
-.el-dropdown-menu__item {
-    text-align: center;
 }
 </style>
