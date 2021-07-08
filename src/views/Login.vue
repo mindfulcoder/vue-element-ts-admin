@@ -1,22 +1,35 @@
 <template>
   <div class="login-wrap">
-    <div class="ms-login">
-      <div class="ms-title">后台管理系统</div>
-      <el-form :model="userinfo" :rules="rules" ref="loginForm" label-width="0px" class="ms-content">
+    <div class="login-form">
+      <div class="title">欢迎使用管理系统</div>
+      <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-width="0px" class="form-content">
         <el-form-item prop="username">
-          <el-input v-model="userinfo.username" placeholder="username">
+          <el-input type="text"
+                    placeholder="username"
+                    v-model="loginForm.username"
+                    tabindex="1"
+                    autocomplete="on">
             <template #prepend>
-              <el-button icon="el-icon-user"></el-button>
+              <i class="el-icon-user"></i>
             </template>
           </el-input>
         </el-form-item>
+        <el-tooltip class="login-tips" v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
         <el-form-item prop="password">
-          <el-input type="password" placeholder="password" v-model="userinfo.password" @keyup.enter="submitForm()">
+          <el-input type="password"
+                    placeholder="password"
+                    v-model="loginForm.password"
+                    tabindex="2"
+                    autocomplete="on"
+                    @keyup.native="checkCapslock"
+                    @blur="capsTooltip = false"
+                    @keyup.enter="submitForm('loginForm')">
             <template #prepend>
-              <el-button icon="el-icon-lock"></el-button>
+              <i class="el-icon-lock"></i>
             </template>
           </el-input>
         </el-form-item>
+        </el-tooltip>
         <div class="login-btn">
           <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
         </div>
@@ -35,11 +48,11 @@ export default defineComponent({
   name: "Login",
   data() {
     return {
-      userinfo: {
+      loginForm: {
         username: "admin",
         password: "123123",
       },
-      rules: {
+      loginRules: {
         username: [
           {
             required: true,
@@ -50,7 +63,8 @@ export default defineComponent({
         password: [
           {required: true, message: "请输入密码", trigger: "blur"},
         ],
-      }
+      },
+      capsTooltip: false,
     }
   },
   methods: {
@@ -65,6 +79,10 @@ export default defineComponent({
           return false;
         }
       })
+    },
+    checkCapslock(e) {
+      const { key } = e
+      this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
     }
   }
 })
@@ -75,11 +93,10 @@ export default defineComponent({
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: url(../assets/img/login-bg.jpg);
-  background-size: 100%;
+  background-color: #2d3a4b;
 }
 
-.ms-title {
+.title {
   width: 100%;
   line-height: 50px;
   text-align: center;
@@ -88,7 +105,7 @@ export default defineComponent({
   border-bottom: 1px solid #ddd;
 }
 
-.ms-login {
+.login-form {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -99,7 +116,7 @@ export default defineComponent({
   overflow: hidden;
 }
 
-.ms-content {
+.form-content {
   padding: 30px 30px;
 }
 
