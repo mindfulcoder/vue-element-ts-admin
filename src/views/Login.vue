@@ -20,8 +20,9 @@
                     placeholder="password"
                     v-model="loginForm.password"
                     tabindex="2"
+                    show-password
                     autocomplete="on"
-                    @keyup.native="checkCapslock"
+                    @input="checkCapslock"
                     @blur="capsTooltip = false"
                     @keyup.enter="submitForm('loginForm')">
             <template #prepend>
@@ -72,7 +73,7 @@ export default defineComponent({
       this.$refs[name].validate((valid) => {
         if (valid) {
           ElMessage.success("登录成功");
-          login(this.userinfo.username, this.userinfo.password)
+          login(this.loginForm.username, this.loginForm.password)
           this.$router.push("/");
         } else {
           ElMessage.error("登录失败");

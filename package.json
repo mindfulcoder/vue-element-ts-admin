@@ -11,7 +11,7 @@
     "vue-router": "^4.0.10",
     "vuex": "^4.0.2",
     "vue-i18n": "^9.0.0",
-    "element-plus": "1.0.2-beta.52",
+    "element-plus": "1.0.2-beta.54",
     "axios": "^0.21.1",
     "vue-schart": "^2.0.0",
     "wangeditor": "^4.7.4",
