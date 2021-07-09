@@ -25,7 +25,7 @@ export const static_routes: RouteRecordRaw[] = [
                     title: '系统首页',
                     icon: 'el-icon-s-home',
                 },
-                component: () => import ("../views/Dashboard.vue")
+                component: () => import ("/@/views/Dashboard.vue")
             },
             {
                 path: "/table",
@@ -34,16 +34,7 @@ export const static_routes: RouteRecordRaw[] = [
                     title: '表格',
                     icon: 'el-icon-s-grid'
                 },
-                component: () => import ("../views/BaseTable.vue")
-            },
-            {
-                path: "/charts",
-                name: "charts",
-                meta: {
-                    title: '图表',
-                    icon: 'el-icon-s-data'
-                },
-                component: () => import ("../views/BaseCharts.vue")
+                component: () => import ("/@/views/BaseTable.vue")
             },
             {
                 path: "/form",
@@ -52,86 +43,56 @@ export const static_routes: RouteRecordRaw[] = [
                     title: '表单',
                     icon: 'el-icon-goods'
                 },
-                component: () => import ("../views/BaseForm.vue")
+                component: () => import ("/@/views/BaseForm.vue")
             },
             {
                 path: "/tabs",
                 name: "tabs",
                 meta: {
                     title: 'tab标签',
-                    icon: 'el-icon-goods'
+                    icon: 'el-icon-s-flag'
 
                 },
-                component: () => import ("../views/Tabs.vue")
-            },
-            {
-                path: "/permission",
-                name: "permission",
-                meta: {
-                    title: '权限管理',
-                    access: ['admin'],
-                    icon: 'el-icon-goods'
-
-                },
-                component: () => import ("../views/Permission.vue")
+                component: () => import ("/@/views/Tabs.vue")
             },
             {
                 path: "/i18n",
                 name: "i18n",
                 meta: {
                     title: '国际化语言',
-                    icon: 'el-icon-goods'
+                    icon: 'el-icon-s-platform'
                 },
-                component: () => import ("../views/I18n.vue")
+                component: () => import ("/@/views/I18n.vue")
             },
             {
                 path: "/upload",
                 name: "upload",
                 meta: {
                     title: '上传插件',
-                    icon: 'el-icon-goods'
+                    icon: 'el-icon-top'
 
                 },
-                component: () => import ( "../views/Upload.vue")
-            },
-            {
-                path: "/icon",
-                name: "icon",
-                meta: {
-                    title: '自定义图标',
-                    icon: 'el-icon-goods'
-
-                },
-                component: () => import ("../views/Icon.vue")
+                component: () => import ( "/@/views/Upload.vue")
             },
             {
                 path: '/404',
                 name: '404',
                 meta: {
                     title: '找不到页面',
-                    icon: 'el-icon-goods'
+                    icon: 'el-icon-search'
 
                 },
-                component: () => import ('../views/404.vue')
-            },
-            {
-                path: '/403',
-                name: '403',
-                meta: {
-                    title: '没有权限',
-                    icon: 'el-icon-goods'
-                },
-                component: () => import ('../views/403.vue')
+                component: () => import ('/@/views/404.vue')
             },
             {
                 path: '/editor',
                 name: 'editor',
                 meta: {
                     title: '富文本编辑器',
-                    icon: 'el-icon-goods'
+                    icon: 'el-icon-document'
 
                 },
-                component: () => import ('../views/Editor.vue')
+                component: () => import ('/@/views/Editor.vue')
             }
         ]
     },
@@ -142,7 +103,7 @@ export const static_routes: RouteRecordRaw[] = [
             title: '登录',
             hidden: true
         },
-        component: () => import ( "../views/Login.vue")
+        component: () => import ( "/@/views/Login.vue")
     }
 ];
 
