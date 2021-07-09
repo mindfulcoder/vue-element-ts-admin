@@ -18,6 +18,7 @@
     "vue-cropperjs": "^5.0.0"
   },
   "devDependencies": {
+    "@types/node": "^16.3.0",
     "@vitejs/plugin-vue": "^1.2.3",
     "@vue/compiler-sfc": "^3.0.5",
     "less": "^4.1.1",

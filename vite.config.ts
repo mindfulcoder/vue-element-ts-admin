@@ -1,6 +1,10 @@
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import styleImport from 'vite-plugin-style-import'
+import path from 'path'
+function resolve(dir: string) {
+    return path.resolve(__dirname, dir);
+}
 
 export default defineConfig({
     plugins: [
@@ -21,6 +25,12 @@ export default defineConfig({
             ]
         })
     ],
+    resolve: {
+        alias: {
+            '/@': resolve('/src'),
+        }
+    },
+
     build: {
         outDir: "dist",
         assetsDir: "assets"
