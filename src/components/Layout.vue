@@ -1,9 +1,9 @@
 <template>
   <div class="about">
-    <v-sidebar/>
-    <v-header/>
+    <Sidebar/>
+    <Header/>
     <div class="content-box" :class="{ 'content-collapse': collapse }">
-      <v-tags></v-tags>
+      <Tags/>
       <div class="content">
         <router-view v-slot="{ Component }">
           <transition name="move" mode="out-in">
@@ -19,16 +19,16 @@
 <script>
 import {defineComponent, computed} from "vue";
 import {useStore} from "vuex";
-import vHeader from "./Header.vue";
-import vSidebar from "./Sidebar.vue";
-import vTags from "./Tags.vue";
+import Header from "/@/components/Header.vue";
+import Sidebar from "/@/components/Sidebar.vue";
+import Tags from "/@/components/Tags.vue";
 
 export default defineComponent({
   name:'Layout',
   components: {
-    vHeader,
-    vSidebar,
-    vTags,
+    Header,
+    Sidebar,
+    Tags,
   },
   setup() {
     const store = useStore();
