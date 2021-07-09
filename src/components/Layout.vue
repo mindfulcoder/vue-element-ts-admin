@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <v-header/>
     <v-sidebar/>
+    <v-header/>
     <div class="content-box" :class="{ 'content-collapse': collapse }">
       <v-tags></v-tags>
       <div class="content">
@@ -19,12 +19,12 @@
 <script>
 import {defineComponent, computed} from "vue";
 import {useStore} from "vuex";
-import vHeader from "../components/Header.vue";
-import vSidebar from "../components/Sidebar.vue";
-import vTags from "../components/Tags.vue";
+import vHeader from "./Header.vue";
+import vSidebar from "./Sidebar.vue";
+import vTags from "./Tags.vue";
 
 export default defineComponent({
-  name:'Home',
+  name:'Layout',
   components: {
     vHeader,
     vSidebar,

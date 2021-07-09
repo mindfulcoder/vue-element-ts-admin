@@ -1,6 +1,6 @@
 import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
-import Home from "../views/Home.vue";
-import {getCurrentUser} from "../utils/user";
+import Layout from "/@/components/Layout.vue";
+import {getCurrentUser} from "/@/utils/user";
 
 export const static_routes: RouteRecordRaw[] = [
     {
@@ -13,7 +13,7 @@ export const static_routes: RouteRecordRaw[] = [
     {
         path: "/",
         name: "Home",
-        component: Home,
+        component: Layout,
         meta: {
             hidden: true
         },
